@@ -1,0 +1,399 @@
+RE 1 
+AACHEN - Hamm
+Hamm - Aachen
+
+RE 2
+Düsseldorf - Münster
+Münster - Düsseldorf
+
+RE 3
+Düsseldorf - Hamm
+Hamm - Düsseldorf
+
+RE 4
+
+Aachen - Dortmund
+Dortmund - Aachen
+
+RE 5
+
+Wesel - Bonn UN Campus
+Bonn UN Campus - Wesel
+
+RE 6 
+
+Köln Bonn Flughafen - Minden
+Minden - Köln Bonn Flughafen
+
+RE 7
+Krefeld - Rheine
+Rheine - Krefeld
+
+RE 9
+Aachen - Siegen
+Siegen - Aachen
+
+RE 10
+Kleve - Düsseldorf
+Düsseldorf - Kleve
+
+RE 11
+Düsseldorf - Paderborn
+Paderborn - Düsseldorf
+
+RE 12
+Köln - Trier
+Triet - Köln
+
+Re 13
+Mönchengladbach - Hamm
+Hamm - Mönchengladbach
+
+RE 14
+Borken - Essen 
+Essen - Borken
+
+RE 15
+Münster - Rheine
+Rheine - Münster
+
+RE 16
+Essen - Iserlohn
+Iserlohn - Essen
+
+RE 17 
+Hagen - Warburg
+Warburg - Hagen
+
+RE 18
+entfällt, nur ins Ausland
+
+RE 19
+Emmerich - Düsseldorf
+Düsseldorf - Emmerich
+
+RB 20
+Geilenkirche - Düren
+Düren - Geilenkirchen
+
+RB 21
+Düren- Linnich
+Linnich - Düren
+
+RE 22
+Köln - Euskirchen
+Euskirchen - Köln
+
+RB 23
+Bad Münstereifel - Euskirchen
+Euskirchen - Bad Münstereifel
+
+RB 24
+Köln - Kall
+Kall - Köln
+
+RB 25
+Köln - Lüdenscheid
+Lüdenscheid - Köln
+
+RB 26
+Köln - Bonn
+Bonn - Köln
+
+RB 27
+Mönchengladbach - Bad Honnef
+Bad Honnef - Mönchengladbach
+
+RB 28
+Düren - Euskirchen
+Euskirchen - Düren 
+
+RE 29 
+
+entfällt, nur ins Ausland
+
+RB 30
+entäfllt, nur außerhalb des Tarifgebiets
+
+RB 31
+Duisburg - Xanten
+Xanten - Duisburg
+
+RB 32
+Bocholt - Wesel
+
+RB 33
+Aachen - Duisburg
+Duisburg - Aachen
+
+RB 34
+Dalheim - Mönchengladbach
+Mönchengladbach - Dalheim
+
+RB 35
+Wesel - Mönchengladbach
+Mönchengladbach - Wesel 
+
+RB 36
+Duisburg-Ruhrort - Oberhausen
+Oberhausen - Duisburg-Ruhrort
+
+RB 37
+Duisburg - Duisburg-Entenfang
+Duisburg-Entenfang - Duisburg
+
+RB 38
+Bedburg - Köln Messe/Deutz
+Köln Messe/Deutz - Bedburg
+
+RB 39
+Düsseldorf - Bedburg
+Bedburg - Düsseldorf
+
+RB 40 
+Essen - Hagen
+Hagen - Essen
+
+RX 41 
+existiert nicht
+
+RE 42
+Münster - Mönchengladbach
+Mönchengladbach - Münster
+
+RB 42
+Brilon Stadt - Brilon Wald
+Brilon Wald - Brilon Stadt
+
+RB 43
+Dorsten - Dortmund
+Dortmund - Dorsten
+
+RB 44
+Dorsten - Oberhausen
+Oberhausen - Dorsten
+
+RB 45
+Dorsten - Coesfeld
+Coesfeld - Dorsten
+
+RB 46
+Gelsenkirchen - Bochum
+Bochum - Gelsenkirchen
+
+RX 47
+existiert nicht
+
+RB 48
+Wuppertal-Oberbarmen - Bonn-Mehlem
+Bonn-Mehlem - Wuppertal-Oberbarmen
+
+RX 49
+existiert nicht
+
+RB 50
+Dortmund - Münster
+Münster - Dortmund
+
+RB 51
+Dortmund - Gronau 
+Gronau - Dortmund
+
+RB 52
+Dortmund - Lüdenscheid
+Lüdenscheid - Dortmund
+
+RB 53
+Dortmund - Iserlohn
+Iserlohn - Dortmund
+
+RB 54
+Unna - Neuenrade
+Neuenrade - Unna
+
+RE 57
+Dortmund - Brilon Stadt
+Brilon Stadt - Dortmund
+
+RB 58
+entfällt, nicht im Tarifgebiet
+
+RB 59
+Dortmund - Soest
+Soest - Dortmund
+
+RE 60
+Rheine - Ibbenbüren
+Ibbenbüren - Rheine
+
+RB 61
+Rheine - Bielefeld
+Bielefeld - Rheine
+
+RB 63
+Münster Zentrum Nord - Coesfeld
+Coesfeld - Münster Zentrum Nord
+
+RB 64
+Münster - Gronau
+Gronau - Münster
+
+RB 65
+Münster - Rheine
+Rheine - Münster
+
+RB 66
+Münster - Lengerich
+Lengerich - Münster
+
+RB 67
+Münster - Bielefeld
+Bielefeld - Münster
+
+RB 69
+Münster - Bielefeld
+Bielefeld - Münster
+
+RE 70
+Bielefeld - Minden
+Minden - Bielefeld
+
+RB 71
+Bielefeld - Rahden
+Rahden - Bielefeld
+
+RB 72
+Herford - Paderborn
+Paderborn - Herford
+
+RB 73
+Bielefeld - Lemgo
+Lemgo - Bielefeld
+
+RB 74
+Bielefeld - Paderborn
+Paderborn - Bielefeld
+
+RB 75
+entfällt, 
+
+RB 77
+Löhne - Rinteln
+Rinteln - Löhne
+
+RE 78
+Minden - Bielefeld
+Bielefeld - Minden
+
+RE 82
+Bielefeld - Altenbeken
+Altenbeken - Bielefeld
+
+RB 84
+Ottbergen - Paderborn
+Paderborn - Ottbergen
+
+RB 85
+Ottbergen - Paderborn
+Paderborn - Ottbergen
+
+RB 89
+Münster - Warburg
+Warburg - Münster
+
+RB 90
+Siegen - Au
+Au - Siegen
+
+RB 91
+Hagen - Iserlohn
+Iserlohn - Hagen
+
+RB 92
+Finnentrop - Olpe
+Olpe - Finnentrop
+
+RB 93
+Siegen - Bad Berleburg
+Bad Berleburg - Siegen
+
+RB 94
+Erndtebrück - Bad Laasphe
+Bad Laasphe - Erndtebrück
+
+RB 95
+Siegen - Wilnsdorf-Rudersdorf
+Wilnsdorf-Rudersdorf - Siegen
+
+RB 96
+Neunkirchen - Burbach
+Burbach - Neunkirchen
+
+RB 97
+entfällt
+
+RE 99
+entfällt
+
+S1 
+Dortmund - Solingen
+Solingen - Dortmund
+
+S2
+Dortmund - Gelsenkirchen
+Gelsenkirchen - Dortmund
+
+S3
+Oberhausen - Hattingen
+Hattingen - Oberhausen
+
+S4
+Unna - Dortmund-Lütgendortmund
+Dortmund-Lütgendortmund - Unna
+
+S5
+Dortmund - Hagen
+Hagen - Dortmund
+
+S6
+Essen - Köln Nippes
+Köln Nippes - Essen
+
+S7
+Wupptertal - Solingen
+Solingen Wuppertal
+
+S8
+Hagen - Mönchengladbach
+Mönchengladbach - Hagen
+
+S9
+Marl - Bottrop
+Bottrop - Marl 
+
+S11
+Düsseldorf Flughafen - Bergisch Gladbach
+Bergisch Gladbach - Düsseldorf Flughafen
+
+S12
+Köln - Au
+Au - Köln
+
+S13
+Aachen - Troisdorf
+Troisdorf - Aachen
+
+S19 
+Düren - Au
+Au - Düren
+
+S23
+Bonn - Euskirchen
+Euskirchen - Bonn
+
+S28
+Mettmann Stadtwald - Neuss
+
+S68
+
+Wuppertal-Vohwinkel - Langenfeld
