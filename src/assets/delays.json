@@ -1,0 +1,114 @@
+[
+    {
+        "id" : "1",
+        "von" : "Düsseldorf",
+        "nach" : "Dortmund",
+        "datum" : "01.01.2018",
+        "uhrzeit" : "19:30",
+        "verspaetung" : "2 Stunden"
+    },
+    {
+        "id" : "2",
+        "von" : "Düsseldorf",
+        "nach" : "Dortmund",
+        "datum" : "01.01.2018",
+        "uhrzeit" : "19:30",
+        "verspaetung" : "2 Stunden"
+    },
+    {
+        "id" : "3",
+        "von" : "Düsseldorf",
+        "nach" : "Dortmund",
+        "datum" : "01.01.2018",
+        "uhrzeit" : "19:30",
+        "verspaetung" : "2 Stunden"
+    },
+    {
+        "id" : "4",
+        "von" : "Düsseldorf",
+        "nach" : "Dortmund",
+        "datum" : "01.01.2018",
+        "uhrzeit" : "19:30",
+        "verspaetung" : "2 Stunden"
+    },
+    {
+        "id" : "5",
+        "von" : "Düsseldorf",
+        "nach" : "Dortmund",
+        "datum" : "01.01.2018",
+        "uhrzeit" : "19:30",
+        "verspaetung" : "2 Stunden"
+    },
+    {
+        "id" : "6",
+        "von" : "Düsseldorf",
+        "nach" : "Dortmund",
+        "datum" : "01.01.2018",
+        "uhrzeit" : "19:30",
+        "verspaetung" : "2 Stunden"
+    },
+    {
+        "id" : "7",
+        "von" : "Düsseldorf",
+        "nach" : "Dortmund",
+        "datum" : "01.01.2018",
+        "uhrzeit" : "19:30",
+        "verspaetung" : "2 Stunden"
+    },
+    {
+        "id" : "8",
+        "von" : "Düsseldorf",
+        "nach" : "Dortmund",
+        "datum" : "01.01.2018",
+        "uhrzeit" : "19:30",
+        "verspaetung" : "2 Stunden"
+    },
+    {
+        "id" : "9",
+        "von" : "Düsseldorf",
+        "nach" : "Dortmund",
+        "datum" : "01.01.2018",
+        "uhrzeit" : "19:30",
+        "verspaetung" : "2 Stunden"
+    },
+    {
+        "id" : "10",
+        "von" : "Düsseldorf",
+        "nach" : "Dortmund",
+        "datum" : "01.01.2018",
+        "uhrzeit" : "19:30",
+        "verspaetung" : "2 Stunden"
+    },
+    {
+        "id" : "11",
+        "von" : "Düsseldorf",
+        "nach" : "Dortmund",
+        "datum" : "01.01.2018",
+        "uhrzeit" : "19:30",
+        "verspaetung" : "2 Stunden"
+    },
+    {
+        "id" : "12",
+        "von" : "Düsseldorf",
+        "nach" : "Dortmund",
+        "datum" : "01.01.2018",
+        "uhrzeit" : "19:30",
+        "verspaetung" : "2 Stunden"
+    },
+    {
+        "id" : "13",
+        "von" : "Düsseldorf",
+        "nach" : "Dortmund",
+        "datum" : "01.01.2018",
+        "uhrzeit" : "19:30",
+        "verspaetung" : "2 Stunden"
+    },
+    {
+        "id" : "14",
+        "von" : "Düsseldorf",
+        "nach" : "Dortmund",
+        "datum" : "01.01.2018",
+        "uhrzeit" : "19:30",
+        "verspaetung" : "2 Stunden"
+    }
+]
