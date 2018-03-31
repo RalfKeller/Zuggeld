@@ -1,5 +1,5 @@
-<?
-    $servername = "s122.goserver.host";
+<?php header('Access-Control-Allow-Origin: *');
+    $servername = "localhost";
     $dbname = "web137_db2";
     $username = "web137_2";
     $password = "maxdubaum";
@@ -14,12 +14,12 @@
         die("Connection failed: " . $conn->connect_error);
     }
 
-    $sql = "SELECT id, start_bahnhof as von, ziel_bahnhof as nach, echte_ankunft, datum, datum_ankunft, zug_nummer, zug_typ abfahrt FROM db_verspaetungen";
-    $sth = mysqli_query($sql);
+    $sql = "SELECT id, start_bahnhof as von, ziel_bahnhof as nach, echte_ankunft, ankunft, datum, datum_ankunft, zug_nummer, zug_typ abfahrt FROM db_verspaetungen";
+    $result = $conn->query($sql);
     $rows = array();
 
-    while($r = mysqli_fetch_assoc($sth)) {
-        $rows[] = r;
+    while($r = $result->fetch_assoc()) {
+        $rows[] = $r;
     }
 
     print json_encode($rows)

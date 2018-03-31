@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommService } from '../Services/comm.service';
 import { ModelService } from '../Services/model.service';
+import * as moment from "moment";
 
 @Component({
     selector: 'listComp',
@@ -26,6 +27,21 @@ export class ListComponent implements OnInit {
 
     ngOnInit() { 
         this.commService.getDelays().subscribe((delays) => {
+            
+            delays.forEach(delay => 
+                { 
+                    console.log(delay.echte_ankunft); 
+                    console.log(delay.ankunft / 1000); 
+                    delay.verspaetung = Math.floor((delay.echte_ankunft - delay.ankunft) / (1000 * 60 * 60)) + " Stunden"
+                    
+                    let ankunftMoment : moment.Moment = moment.unix(delay.echte_ankunft / 1000);
+                    delay.uhrzeit = ankunftMoment.format("H:mm")
+                    delay.datumFormated = ankunftMoment.format("DD.MM.YYYY")
+                
+                }
+            );
+
+            console.log(delays[0].verspaetung);
             this.allDelays = delays
             this.filteredDelays = delays
             this.shownDelays = delays.slice(0, this.delaysPerPage)
@@ -53,7 +69,7 @@ export class ListComponent implements OnInit {
         this.filteredDelays = []
         for(let delay of this.allDelays) {
 
-            if((delay.von.indexOf(this.searchString) != -1) || (delay.nach.indexOf(this.searchString) != -1) || (delay.datum.indexOf(this.searchString) != -1)) {
+            if((delay.von.indexOf(this.searchString) != -1) || (delay.nach.indexOf(this.searchString) != -1) || (delay.datumFormated.indexOf(this.searchString) != -1)) {
                 this.filteredDelays.push(delay)
             }
         }

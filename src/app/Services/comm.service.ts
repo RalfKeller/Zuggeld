@@ -29,7 +29,8 @@ export class CommService {
         }
 
         console.log(user)
-        return this.http.get<Delay[]>('assets/delays.json')
+        let observable : Observable<Delay[]> = this.http.get<Delay[]>('http://bahngeld.de/getData.php')
+        return observable;
     }
 
     postData(user : User, selectedDelays : number[]) {

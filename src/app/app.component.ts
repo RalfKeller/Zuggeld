@@ -30,7 +30,9 @@ export class AppComponent {
 
   @ViewChild(SignaturePad) signaturePad: SignaturePad;
 
-  constructor(private commService : CommService, private modelService : ModelService) {}
+  constructor(private commService : CommService, private modelService : ModelService) 
+  {
+  }
 
   filePicked(event : PickedFile) {
     this.selectedFile = event.content
@@ -63,8 +65,6 @@ export class AppComponent {
       mail: this.email
     }
 
-    this.commService.postData(user, this.modelService.getSelectedDelays().map((delay) => {return +delay.id; }));
-
     if(!this.selectedFile || !this.firstname || !this.lastname || !this.street || !this.streetnumber
     || !this.plz || !this.wohnort || !this.email || !this.land || !this.agbAkzeptiert ) {
       $('#errorModal').modal()
@@ -72,10 +72,11 @@ export class AppComponent {
     }
 
     else {
+      this.commService.postData(user, this.modelService.getSelectedDelays().map((delay) => {return +delay.id; }));
       $('#doneModal').modal()
       $('#doneModal').modal('open');
     }
-    }
+  }
 
 
 }

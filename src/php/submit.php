@@ -14,7 +14,7 @@
     }
 
     $userArray = json_decode($_POST['jsonUser'], true);
-    //$delayIds = json_decode($_POST['jsonDelays'], true)
+    $delayIds = json_decode($_POST['jsonDelays'], true);
 
     $attributes = "";
     $values = "";
@@ -38,7 +38,18 @@
 
     if($conn->query($sql) == TRUE) {
         $last_id = $conn->insert_id;
+        
+        $values = "";
         echo $last_id;
+        foreach($delayIds as $key => $value) {
+            $sql = "INSERT INTO verspaetung_user (id_user, id_verspaetung) 
+                    VALUES (" . $last_id . ", " . $value . ")";
+            if(!($conn->query($sql) == TRUE)) {
+                die("Error:" . $conn->error);
+            }
+        }
+        
+        echo "success";
     }
 
     else {
