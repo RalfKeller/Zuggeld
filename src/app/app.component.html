@@ -1,29 +1,29 @@
 <nav class="light-blue lighten-1" role="navigation">
-  <div class="nav-wrapper container">
-    <a id="logo-container" href="#" class="brand-logo">Zuggeld</a>
+    <div class="nav-wrapper container">
+        <a id="logo-container" href="#" class="brand-logo">Zuggeld</a>
 
-    <ul id="nav-mobile" class="side-nav">
-      <li>
-        <a href="#">Navbar Link</a>
-      </li>
-    </ul>
-    <a href="#" data-activates="nav-mobile" class="button-collapse">
-      <i class="material-icons">menu</i>
-    </a>
-  </div>
+        <ul id="nav-mobile" class="side-nav">
+            <li>
+                <a href="#">Navbar Link</a>
+            </li>
+        </ul>
+        <a href="#" data-activates="nav-mobile" class="button-collapse">
+            <i class="material-icons">menu</i>
+        </a>
+    </div>
 </nav>
 <div class="section no-pad-bot" id="index-banner">
-  <div class="container">
-    <br>
-    <br>
-    <h1 class="header center orange-text">Hol dir dein Geld zurück!</h1>
-    <div class="row center">
-      <h5 class="header col s12 light">Mach unendlich viel Cash mit Zuggeld.de! Geb uns alle deine Daten und wir versprechen dir sie nicht weiterzuverkaufen!</h5>
-    </div>
-    <br>
-    <br>
+    <div class="container">
+        <br>
+        <br>
+        <h1 class="header center orange-text">Hol dir dein Geld zurück!</h1>
+        <div class="row center">
+            <h5 class="header col s12 light">Mach unendlich viel Cash mit Zuggeld.de! Geb uns alle deine Daten und wir versprechen dir sie nicht weiterzuverkaufen!</h5>
+        </div>
+        <br>
+        <br>
 
-  </div>
+    </div>
 </div>
 
 
@@ -34,118 +34,144 @@
 <h2 class="header center orange-text">Gib uns deine Daten!</h2>
 
 <div class="container">
-  <div class="row">
+    <div class="row">
 
 
-    <form class="col s12">
-      <div class="row">
-        <div class="input-field col s6">
-          <input id="first_name" type="text" class="validate" name="first_name" [(ngModel)]="firstname">
-          <label for="first_name">First Name</label>
-        </div>
-        <div class="input-field col s6">
-          <input id="last_name" type="text" class="validate" name="last_name" [(ngModel)]="lastname">
-          <label for="last_name">First Name</label>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="input-field col s10">
-          <input id="last_name" type="text" class="validate" name="street" [(ngModel)]="street">
-          <label for="last_name">Straße</label>
-        </div>
-        <div class="input-field col s2">
-          <input id="last_name" type="number" class="validate"  name="streetnumber" [(ngModel)]="streetnumber">
-          <label for="last_name">Nummer</label>
-        </div>
-      </div>
-      <div class="row">
-        <div class="input-field col s4">
-          <input id="last_name" type="number" class="validate" name="plz" [(ngModel)]="plz">
-          <label for="last_name">Postleitzahl</label>
-        </div>
-        <div class="input-field col s8">
-          <input id="last_name" type="text" class="validate" name = "wohnort" [(ngModel)]="wohnort" >
-          <label for="last_name">Wohnort</label>
-        </div>
-      </div>
-      <div class="row">
-        <div class="input-field col s12">
-          <input id="last_name" type="email" class="validate" name="email4" [(ngModel)]="email">
-          <label for="last_name">Paypal-Email</label>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col s6">
-          <div class="container" style="margin:0">
+        <form class="col s12">
             <div class="row">
-              <div class="col">
-                Wir brauchen ein Bild von deinem Gerät
-              </div>
+                <div class="col s6">
+                    <input name="anrede" type="radio" id="herr" value="Herr" [(ngModel)]="anrede" />
+                    <label for="herr">Herr</label>
+                </div>
+                <div class="col s6">
+                    <input name="anrede" type="radio" id="frau" value="Frau" [(ngModel)]="anrede" />
+                    <label for="frau">Frau</label>
+                </div>
             </div>
             <div class="row">
-              <div class="col">
-                  <button type="button" class="btn" ngFilePicker accept="image/*" (filePick)="filePicked($event)"> Durchsuchen </button>
-              </div>
+                <div class="input-field col s6">
+                    <input id="first_name" type="text" class="validate" name="first_name" [(ngModel)]="firstname">
+                    <label for="first_name">First Name</label>
+                </div>
+                <div class="input-field col s6">
+                    <input id="last_name" type="text" class="validate" name="last_name" [(ngModel)]="lastname">
+                    <label for="last_name">First Name</label>
+                </div>
             </div>
 
-          </div>
+            <div class="row">
+                <div class="input-field col s10">
+                    <input id="last_name" type="text" class="validate" name="street" [(ngModel)]="street">
+                    <label for="last_name">Straße</label>
+                </div>
+                <div class="input-field col s2">
+                    <input id="last_name" type="number" class="validate" name="streetnumber" [(ngModel)]="streetnumber">
+                    <label for="last_name">Nummer</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s4">
+                    <input id="last_name" type="number" class="validate" name="plz" [(ngModel)]="plz">
+                    <label for="last_name">Postleitzahl</label>
+                </div>
+                <div class="input-field col s8">
+                    <input id="last_name" type="text" class="validate" name="wohnort" [(ngModel)]="wohnort">
+                    <label for="last_name">Wohnort</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <input id="last_name" type="text" class="validate" name="land" [(ngModel)]="land">
+                    <label for="last_name">Land</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <input id="last_name" type="email" class="validate" name="email4" [(ngModel)]="email">
+                    <label for="last_name">Paypal-Email</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s6">
+                    <div class="container" style="margin:0">
+                        <div class="row">
+                            <div class="col">
+                                Wir brauchen ein Bild von deinem Gerät
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <button type="button" class="btn" ngFilePicker accept="image/*" (filePick)="filePicked($event)"> Durchsuchen </button>
+                            </div>
+                        </div>
 
+                    </div>
+
+                </div>
+                <div class="col s6">
+                    <img *ngIf="selectedFile" [src]="selectedFile" style="max-height:150px">
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="row">
+        <div class="col 12 pad-wrapper" style="text-align: center">
+            <signature-pad></signature-pad>
+
+            <br> Bitte deine Unterschrift hier lassen
         </div>
+    </div>
+    <div class="row">
         <div class="col s6">
-          <img *ngIf="selectedFile" [src]="selectedFile" style="max-height:150px">
+            <input type="checkbox" class="filled-in" id="agb" checked="checked" [(ngModel)]="agbAkzeptiert" />
+            <label for="agb">Ich bin bereit meine Seele für 20€ zu verkaufen</label>
         </div>
-      </div>
-    </form>
-  </div>
-  <div class="row">
-    <div class="col 12 pad-wrapper" style="text-align: center">
-          <signature-pad></signature-pad>
-      
-      <br>
-      Bitte deine Unterschrift hier lassen
-    </div>
-  </div>
-  <div class="row">
-    <div class="col s6">
-      <input type="checkbox" class="filled-in" id="agb" checked="checked" />
-      <label for="agb">Ich bin bereit meine Seele für 20€ zu verkaufen</label>
-    </div>
-    <div class="col s6" style="text-align:right">
+        <div class="col s6" style="text-align:right">
 
-      <button class="btn waves-effect waves-light" type="submit" name="action" (click)="submit()" >Abschicken
+            <button class="btn waves-effect waves-light" type="submit" name="action" (click)="submit()">Abschicken
         <i class="material-icons right">send</i>
       </button>
+        </div>
     </div>
-  </div>
 </div>
 
 <footer class="page-footer orange">
-  <div class="container">
-    <div class="row">
-      <div class="col l6 s12">
-        <h5 class="white-text">Impressum</h5>
-        <p class="grey-text text-lighten-4">Geschäftsführer: Gökhan oder Nick</p>
-      </div>
-    </div>
-  </div>
-
-  <div class="footer-copyright">
     <div class="container">
-      © 2017 Copyright Text
+        <div class="row">
+            <div class="col l6 s12">
+                <h5 class="white-text">Impressum</h5>
+                <p class="grey-text text-lighten-4">Geschäftsführer: Gökhan oder Nick</p>
+            </div>
+        </div>
     </div>
-  </div>
+
+    <div class="footer-copyright">
+        <div class="container">
+            © 2018 Copyright Text
+        </div>
+    </div>
 </footer>
 
 
 
-  <!-- Modal Structure -->
-  <div id="doneModal" class="modal">
-      <div class="modal-content">
+<!-- Modal Structure -->
+<div id="doneModal" class="modal">
+    <div class="modal-content">
         <h4>Du hast es geschafft!</h4>
         <p>Du bist bester Mann, du hast es geschafft das Formular auszufüllen. Du hast effektiv die Bahn abgezogen. Bald hast du mehr Cash auf dem Konto!</p>
-      </div>
-      <div class="modal-footer">
-        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Danke Bruder</a>
-      </div>
     </div>
+    <div class="modal-footer">
+        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Danke Bruder</a>
+    </div>
+</div>
+
+<!-- Modal Structure -->
+<div id="errorModal" class="modal">
+    <div class="modal-content">
+        <h4>Du Retard!</h4>
+        <p>Alle Felder ausfüllen sollst du!</p>
+    </div>
+    <div class="modal-footer">
+        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Danke Bruder</a>
+    </div>
+</div>

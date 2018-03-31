@@ -74,7 +74,12 @@ export class ListComponent implements OnInit {
         }
     }
 
-    onCheckboxChanged(event : Event, delayId : number) {
-        
-    }
+    onCheckboxChanged(event, delayId : number) {
+        if(event.srcElement.checked) {
+            this.modelService.addSelectedDelay(this.allDelays.find((value) => +value.id == delayId))
+        }
+        else {
+            this.modelService.removeSelectedDelayById(delayId)
+        }
+     }
 }

@@ -14,7 +14,7 @@
         die("Connection failed: " . $conn->connect_error);
     }
 
-    $sql = "SELECT id, start_bahnhof as von, ziel_bahnhof as nach, abfahrt as uhrzeit, datum FROM db_verspaetungen";
+    $sql = "SELECT id, start_bahnhof as von, ziel_bahnhof as nach, echte_ankunft, datum, datum_ankunft, zug_nummer, zug_typ abfahrt FROM db_verspaetungen";
     $sth = mysqli_query($sql);
     $rows = array();
 
@@ -23,7 +23,5 @@
     }
 
     print json_encode($rows)
-
-
 
 ?>

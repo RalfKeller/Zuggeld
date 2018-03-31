@@ -3,31 +3,41 @@ import { Subscription } from 'rxjs/Subscription';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 
+declare var $ : any
 @Injectable()
 export class CommService {
 
     constructor(private http : HttpClient) { }
 
     getDelays() : Observable<Delay[]> {
+        let user : User = {
+            anrede: "Herr",
+            vorname: "Ralf",
+            name: "Keller",
+            strasse : "Asd",
+            strasse_nr : "33",
+            staat : "DE",
+            plz : "33098",
+            wohnort : "PB",
+            konto_inhaber : "Ich",
+            iban : "123",
+            bic : "GEN",
+            datum_unterschrift : "19.12.1990",
+            unterschrift : "AAA",
+            ticket_bild : "Bild",
+            mail : ""            
+        }
+
+        console.log(user)
         return this.http.get<Delay[]>('assets/delays.json')
     }
 
-    postData(ids : number[], vorname : string, nachname : string, street : string, hausnummer : number, plz : number, wohnort : string, email : string) {
-        let idString : string = ""
-        for(let id of ids) {
-            idString += id + " "
-        }
-
+    postData(user : User, selectedDelays : number[]) {
         let params : HttpParams = new HttpParams()
-        params.append('ids', idString)
-        params.append('vorname', vorname)
-        params.append('nachname', nachname)
-        params.append('email', email)
-        params.append('street', street)
-        params.append('hausnummer', hausnummer + "")
-        params.append('plz', plz + "")
-
-        this.http.post('zuggeld.de/php/submit.php', params)
+        
+        params = params.append('jsonUser', JSON.stringify(user))
+        params.append('jsonDelays', JSON.stringify(selectedDelays))
+        this.http.post('http://bahngeld.de/submit.php', params).subscribe(data => console.log(data), error => console.log(error))
     }
     
 }
