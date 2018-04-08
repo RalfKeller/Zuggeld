@@ -26,7 +26,8 @@ class MiniSpider(scrapy.Spider):
                 callback= self.parse_artikel)
 
     #def parse_kategorie(self, response):
-        
+    
+
 
             
     def parse_artikel(self, response):
@@ -41,9 +42,24 @@ class MiniSpider(scrapy.Spider):
             for block in time_blocks:
                 prognosed_time = block.css("::text").extract_first()
                 actual_time = block.css(".delay::text").extract_first()
-                yield { "Prognose":prognosed_time, "Echt Zeit": actual_time, "url":response.url
-                        }
+                if actual_time:
+                    differenz = self.get_min_diff(prognosed_time,actual_time)
+                else:
+                    differenz = 0
+                
+                if differenz > 60:
+                    yield { "Prognose":prognosed_time, "Echt Zeit": actual_time, "url":response.url, "Differenz": differenz
+                            }
         
+    def get_min(self,time_str):
+        h = time_str.split(':')
+        return int(h[0]) * 60 + int(h[1])
 
-    
+    def get_min_diff(self, prognose, tatsache):
+        prognose_min = self.get_min(prognose)
+        tatsache_min = self.get_min(tatsache)
+        if prognose_min > tatsache_min:
+            tatsache_min = tatsache_min + 24*60 
+        return tatsache_min - prognose_min
+
 
