@@ -21,6 +21,7 @@ class MiniSpider(scrapy.Spider):
     weekday = datetime.datetime.today().weekday()
     weekday = weekdays[weekday]
 
+    ajax_more_details = "HWAI=CONNECTION$C0-2!id=C0-2!HwaiConId=C0-2!HwaiDetailStatus=details!&ajax=1"
 
 
     def parse(self, response):
@@ -70,10 +71,11 @@ class MiniSpider(scrapy.Spider):
                         arrival_date = request_date
 
                 departure_time = block.css(".firstrow .time::text").extract()
-            
+                
+                more_details_link = block.css(".open::attr(href)").extract_first() + self.ajax_more_details
 
                 if differenz >= 0:
-                    yield { "prognose":prognosed_time, 
+                    meta_dict = { "prognose":prognosed_time, 
                             "realtime": actual_time, 
                             "url":response.url, 
                             "difference": differenz,
@@ -82,9 +84,42 @@ class MiniSpider(scrapy.Spider):
                             "datum": request_date,
                             "request_time": str((self.now.hour+1)%24)+":"+str(self.now.minute),
                             "arrival_date" : arrival_date,
-                            "departure_time": departure_time
+                            "departure_time": departure_time,
+                            "more_details_link" : more_details_link
                             }
+
+                    yield scrapy.http.Request(more_details_link, meta= meta_dict, callback=self.parse_more_details)
+
+                    # yield { "prognose":prognosed_time, 
+                    #         "realtime": actual_time, 
+                    #         "url":response.url, 
+                    #         "difference": differenz,
+                    #         "start_station": start_station,
+                    #         "end_station": end_station,
+                    #         "datum": request_date,
+                    #         "request_time": str((self.now.hour+1)%24)+":"+str(self.now.minute),
+                    #         "arrival_date" : arrival_date,
+                    #         "departure_time": departure_time,
+                    #         "more_details_link" : more_details_link
+                    #         }
         
+    def parse_more_details(self, response):
+
+        train_type = response.css(".products a::text")
+        yield {     "prognose":response.meta['prognose'], 
+                    "realtime": response.meta['realtime'], 
+                    # "url":response.url, 
+                    # "difference": differenz,
+                    # "start_station": start_station,
+                    # "end_station": end_station,
+                    # "datum": request_date,
+                    # "request_time": str((self.now.hour+1)%24)+":"+str(self.now.minute),
+                    # "arrival_date" : arrival_date,
+                    # "departure_time": departure_time,
+                    # "more_details_link" : more_details_link
+                    }
+
+
     def get_min(self,time_str):
         h = time_str.split(':')
         return int(h[0]) * 60 + int(h[1])
