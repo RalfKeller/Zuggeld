@@ -74,7 +74,7 @@ class MiniSpider(scrapy.Spider):
                 
                 more_details_link = block.css(".open::attr(href)").extract_first() + self.ajax_more_details
 
-                if differenz >= 0:
+                if differenz > 60:
                     meta_dict = { "prognose":prognosed_time, 
                             "realtime": actual_time, 
                             "url":response.url, 
@@ -105,18 +105,22 @@ class MiniSpider(scrapy.Spider):
         
     def parse_more_details(self, response):
 
-        train_type = response.css(".products a::text")
+        train_number = response.css(".products a::text").extract_first()
+        train_type = train_number.split(' ',1)[0]
+
         yield {     "prognose":response.meta['prognose'], 
                     "realtime": response.meta['realtime'], 
-                    # "url":response.url, 
-                    # "difference": differenz,
-                    # "start_station": start_station,
-                    # "end_station": end_station,
-                    # "datum": request_date,
-                    # "request_time": str((self.now.hour+1)%24)+":"+str(self.now.minute),
-                    # "arrival_date" : arrival_date,
-                    # "departure_time": departure_time,
-                    # "more_details_link" : more_details_link
+                    "url":response.meta['url'], 
+                    "difference": response.meta['difference'],
+                    "start_station": response.meta['start_station'],
+                    "end_station": response.meta['end_station'],
+                    "datum": response.meta['datum'],
+                    "request_time": response.meta['request_time'],
+                    "arrival_date" : response.meta['arrival_date'],
+                    "departure_time": response.meta['departure_time'],
+                    "more_details_link" : response.meta['more_details_link'],
+                    "train_type": train_type,
+                    "train_number": train_number,
                     }
 
 
