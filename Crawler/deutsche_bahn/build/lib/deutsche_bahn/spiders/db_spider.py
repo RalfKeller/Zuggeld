@@ -1,6 +1,7 @@
 import scrapy
 import datetime
 import time
+
 class MiniSpider(scrapy.Spider):
 
     name = "db"
@@ -20,9 +21,12 @@ class MiniSpider(scrapy.Spider):
     weekday = datetime.datetime.today().weekday()
     weekday = weekdays[weekday]
 
+    ajax_more_details = "HWAI=CONNECTION$C0-2!id=C0-2!HwaiConId=C0-2!HwaiDetailStatus=details!&ajax=1"
+
+
     def parse(self, response):
         for strecke in self.strecken:
-		    yield scrapy.Request("https://reiseauskunft.bahn.de/bin/query.exe/dn?revia=yes&existOptimizePrice=1&country=DEU&dbkanal_007=L01_S01_D001_KIN0001_qf-bahn-svb-nn-kl2_lz03&start=1&protocol=https%3A&REQ0JourneyStopsS0A=1&S="+strecke["ankunft"]+"&Z="+strecke["abfahrt"]+"&REQ0JourneyStopsZID=&date="+self.weekday+"%2C+"+str(self.now.day)+"."+str(self.now.month)+"."+str(self.now.year)+"&time="+str(self.now.hour)+"%3A"+str(self.now.minute)+"&timesel=depart&returnDate=&returnTime=&returnTimesel=depart&optimize=0&journeyProducts=1016&auskunft_travelers_number=1&tariffTravellerType.1=E&tariffTravellerReductionClass.1=0&tariffClass=2&rtMode=DB-HYBRID&externRequest=yes&HWAI=JS%21js%3Dyes%21ajax%3Dyes%21",
+		    yield scrapy.Request("https://reiseauskunft.bahn.de/bin/query.exe/dn?revia=yes&existOptimizePrice=1&country=DEU&dbkanal_007=L01_S01_D001_KIN0001_qf-bahn-svb-nn-kl2_lz03&start=1&protocol=https%3A&REQ0JourneyStopsS0A=1&S="+strecke["ankunft"]+"&Z="+strecke["abfahrt"]+"&REQ0JourneyStopsZID=&date="+self.weekday+"%2C+"+str(self.now.day)+"."+str(self.now.month)+"."+str(self.now.year)+"&time="+str((self.now.hour+1)%24)+"%3A"+str(self.now.minute)+"&timesel=depart&returnDate=&returnTime=&returnTimesel=depart&optimize=0&journeyProducts=1016&auskunft_travelers_number=1&tariffTravellerType.1=E&tariffTravellerReductionClass.1=0&tariffClass=2&rtMode=DB-HYBRID&externRequest=yes&HWAI=JS%21js%3Dyes%21ajax%3Dyes%21",
                 callback= self.parse_artikel)
 
     #def parse_kategorie(self, response):
@@ -36,21 +40,90 @@ class MiniSpider(scrapy.Spider):
                 time.sleep(5)
                 yield scrapy.Request(response.url,dont_filter=True,callback=self.parse_artikel)
         else:
-            time_blocks = response.css(".last .time")
-            if not time_blocks:
-                yield {"time_block":"null", "url":response.url, "body":response.text} 
-            for block in time_blocks:
-                prognosed_time = block.css("::text").extract_first()
-                actual_time = block.css(".delay::text").extract_first()
+            train_blocks = response.css(".boxShadow.scheduledCon")
+            if not train_blocks:
+                yield {"train_block":"null", "url":response.url, "body":response.text} 
+            for block in train_blocks:
+
+                prognosed_time = block.css(".last .time::text").extract_first()
+                actual_time = block.css(".last .time .delay::text").extract_first()
+                request_date = str(self.now.day)+"."+str(self.now.month)+"."+str(self.now.year)
+                tomorrow = datetime.date.today() + datetime.timedelta(days=1)
                 if actual_time:
                     differenz = self.get_min_diff(prognosed_time,actual_time)
                 else:
                     differenz = 0
                 
-                if differenz > 60:
-                    yield { "Prognose":prognosed_time, "Echt Zeit": actual_time, "url":response.url, "Differenz": differenz
+                start_station = block.css(".station.first::text").extract_first()
+                end_station = block.css(".stationDest::text").extract_first()
+
+                request_time= str((self.now.hour+1)%24) + ":" + str(self.now.minute)
+                
+                if actual_time:
+                    if self.is_arrival_tomorrow(request_time, actual_time):
+                        arrival_date = tomorrow
+                    else:
+                        arrival_date = request_date
+                else:
+                    if self.is_arrival_tomorrow(request_time, prognosed_time):
+                        arrival_date = tomorrow
+                    else:
+                        arrival_date = request_date
+
+                departure_time = block.css(".firstrow .time::text").extract()
+                
+                more_details_link = block.css(".open::attr(href)").extract_first() + self.ajax_more_details
+
+                if differenz >= 0:
+                    meta_dict = { "prognose":prognosed_time, 
+                            "realtime": actual_time, 
+                            "url":response.url, 
+                            "difference": differenz,
+                            "start_station": start_station,
+                            "end_station": end_station,
+                            "datum": request_date,
+                            "request_time": str((self.now.hour+1)%24)+":"+str(self.now.minute),
+                            "arrival_date" : arrival_date,
+                            "departure_time": departure_time,
+                            "more_details_link" : more_details_link
                             }
+
+                    yield scrapy.http.Request(more_details_link, meta= meta_dict, callback=self.parse_more_details)
+
+                    # yield { "prognose":prognosed_time, 
+                    #         "realtime": actual_time, 
+                    #         "url":response.url, 
+                    #         "difference": differenz,
+                    #         "start_station": start_station,
+                    #         "end_station": end_station,
+                    #         "datum": request_date,
+                    #         "request_time": str((self.now.hour+1)%24)+":"+str(self.now.minute),
+                    #         "arrival_date" : arrival_date,
+                    #         "departure_time": departure_time,
+                    #         "more_details_link" : more_details_link
+                    #         }
         
+    def parse_more_details(self, response):
+
+        train_number = response.css(".products a::text").extract_first()
+        train_type = train_number.split(' ',1)[0]
+
+        yield {     "prognose":response.meta['prognose'], 
+                    "realtime": response.meta['realtime'], 
+                    "url":response.meta['url'], 
+                    "difference": response.meta['difference'],
+                    "start_station": response.meta['start_station'],
+                    "end_station": response.meta['end_station'],
+                    "datum": response.meta['datum'],
+                    "request_time": response.meta['request_time'],
+                    "arrival_date" : response.meta['arrival_date'],
+                    "departure_time": response.meta['departure_time'],
+                    "more_details_link" : response.meta['more_details_link'],
+                    "train_type": train_type,
+                    "train_number": train_number,
+                    }
+
+
     def get_min(self,time_str):
         h = time_str.split(':')
         return int(h[0]) * 60 + int(h[1])
@@ -62,4 +135,11 @@ class MiniSpider(scrapy.Spider):
             tatsache_min = tatsache_min + 24*60 
         return tatsache_min - prognose_min
 
+    def is_arrival_tomorrow(self,prognose,tatsache):
+        prognose_min = self.get_min(prognose)
+        tatsache_min = self.get_min(tatsache)
+        if prognose_min > tatsache_min:
+            return True
+        else:
+            return False
 

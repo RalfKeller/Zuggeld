@@ -74,7 +74,7 @@ class MiniSpider(scrapy.Spider):
                 
                 more_details_link = block.css(".open::attr(href)").extract_first() + self.ajax_more_details
 
-                if differenz > 60:
+                if differenz >= 0:
                     meta_dict = { "prognose":prognosed_time, 
                             "realtime": actual_time, 
                             "url":response.url, 
