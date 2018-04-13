@@ -24,7 +24,8 @@ else{
     echo "success";
 }
 
-$json_jobs = shell_exec("curl -u 39d09354c0474b5ea187b4ef20931431: https://app.scrapinghub.com/api/jobs/list.json?project=269022&spider=db&state=finished&count=2");
+$json_jobs = shell_exec("curl -u 39d09354c0474b5ea187b4ef20931431: 'https://app.scrapinghub.com/api/jobs/list.json?project=269022&spider=db&state=finished&lacks_tag=consumed'");
+echo "<br>". $json_jobs . "<br>";
 $jobs = json_decode($json_jobs);
 $id_array = array();
 $counter= 0;
@@ -157,6 +158,10 @@ foreach($items_array_array as $json_item){
 
 
 }
+foreach($id_array as $id){
+    shell_exec("curl -u 39d09354c0474b5ea187b4ef20931431: https://app.scrapinghub.com/api/jobs/update.json -d project=269022 -d job=".$id." -d add_tag=consumed");
+}
+
 
 $conn->close();
 
