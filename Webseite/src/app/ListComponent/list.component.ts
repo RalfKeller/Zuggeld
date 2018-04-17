@@ -31,11 +31,14 @@ export class ListComponent implements OnInit {
             delays.forEach(delay => 
                 { 
                     console.log(delay.echte_ankunft); 
-                    console.log(delay.ankunft / 1000); 
-                    delay.verspaetung = Math.floor((delay.echte_ankunft - delay.ankunft) / (1000 * 60 * 60)) + " Stunden"
+                    console.log(delay.ankunft);
+                    let echte_ankunft_moment : moment.Moment = moment(delay.echte_ankunft, "HH:mm:ss")
+                    let ankunft_moment : moment.Moment = moment(delay.ankunft, "HH:mm:ss")
+                    delay.verspaetung = moment.duration(echte_ankunft_moment.diff(ankunft_moment)).hours() + " Stunden"
                     
-                    let ankunftMoment : moment.Moment = moment.unix(delay.echte_ankunft / 1000);
-                    delay.uhrzeit = ankunftMoment.format("H:mm")
+                    let ankunftMoment : moment.Moment = moment(delay.datum + delay.ankunft, "YYYY-MM-DDHH:mm:ss")
+                    delay.uhrzeit = ankunftMoment.format("HH:mm")
+                    console.log(delay.datum)
                     delay.datumFormated = ankunftMoment.format("DD.MM.YYYY")
                 
                 }
