@@ -30,17 +30,16 @@ export class ListComponent implements OnInit {
             
             delays.forEach(delay => 
                 { 
-                    console.log(delay.echte_ankunft); 
-                    console.log(delay.ankunft);
                     let echte_ankunft_moment : moment.Moment = moment(delay.echte_ankunft, "HH:mm:ss")
                     let ankunft_moment : moment.Moment = moment(delay.ankunft, "HH:mm:ss")
                     delay.verspaetung = moment.duration(echte_ankunft_moment.diff(ankunft_moment)).hours() + " Stunden"
                     
                     let ankunftMoment : moment.Moment = moment(delay.datum + delay.ankunft, "YYYY-MM-DDHH:mm:ss")
+                    let abfahrtMoment : moment.Moment = moment(delay.abfahrt, "HH:mm:ss")
                     delay.uhrzeit = ankunftMoment.format("HH:mm")
-                    console.log(delay.datum)
-                    delay.datumFormated = ankunftMoment.format("DD.MM.YYYY")
-                
+                    
+                    delay.datumFormated = ankunftMoment.format("DD.MM.YYYY");
+                    delay.abfahrtFormated = abfahrtMoment.format("HH:mm")
                 }
             );
 
@@ -69,10 +68,11 @@ export class ListComponent implements OnInit {
 
     onSearchChanged() {
         console.log(this.searchString)
+        let lowerSearchString = this.searchString.toLowerCase()
         this.filteredDelays = []
         for(let delay of this.allDelays) {
 
-            if((delay.von.indexOf(this.searchString) != -1) || (delay.nach.indexOf(this.searchString) != -1) || (delay.datumFormated.indexOf(this.searchString) != -1)) {
+            if((delay.von.toLowerCase().indexOf(lowerSearchString) != -1) || (delay.nach.toLowerCase().indexOf(lowerSearchString) != -1) || (delay.datumFormated.toLowerCase().indexOf(lowerSearchString) != -1)) {
                 this.filteredDelays.push(delay)
             }
         }

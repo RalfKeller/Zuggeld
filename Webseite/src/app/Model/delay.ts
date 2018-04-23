@@ -12,5 +12,6 @@ class Delay {
 
     datumFormated : String
     uhrzeit : String
+    abfahrtFormated : String
     verspaetung : String
 }

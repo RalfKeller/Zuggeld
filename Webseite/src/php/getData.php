@@ -14,7 +14,7 @@
         die("Connection failed: " . $conn->connect_error);
     }
 
-    $sql = "SELECT id, start_bahnhof as von, ziel_bahnhof as nach, echte_ankunft, ankunft, datum, datum_ankunft, zug_nummer, zug_typ abfahrt FROM db_verspaetungen";
+    $sql = "SELECT id, start_bahnhof as von, ziel_bahnhof as nach, echte_ankunft, ankunft, datum, datum_ankunft, zug_nummer, zug_typ, abfahrt FROM db_verspaetungen";
     $result = $conn->query($sql);
     $rows = array();
 
