@@ -25,7 +25,7 @@ import { ModelService } from './Services/model.service';
     HttpClientModule,
     AngularFilePickerModule,
     SignaturePadModule,
-    FormsModule
+    FormsModule,
   ],
   providers: [
     CommService,

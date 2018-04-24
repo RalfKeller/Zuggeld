@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommService } from '../Services/comm.service';
 import { ModelService } from '../Services/model.service';
+import * as moment from "moment";
 
 @Component({
     selector: 'listComp',
@@ -26,6 +27,23 @@ export class ListComponent implements OnInit {
 
     ngOnInit() { 
         this.commService.getDelays().subscribe((delays) => {
+            
+            delays.forEach(delay => 
+                { 
+                    let echte_ankunft_moment : moment.Moment = moment(delay.echte_ankunft, "HH:mm:ss")
+                    let ankunft_moment : moment.Moment = moment(delay.ankunft, "HH:mm:ss")
+                    delay.verspaetung = moment.duration(echte_ankunft_moment.diff(ankunft_moment)).hours() + " Stunden"
+                    
+                    let ankunftMoment : moment.Moment = moment(delay.datum + delay.ankunft, "YYYY-MM-DDHH:mm:ss")
+                    let abfahrtMoment : moment.Moment = moment(delay.abfahrt, "HH:mm:ss")
+                    delay.uhrzeit = ankunftMoment.format("HH:mm")
+                    
+                    delay.datumFormated = ankunftMoment.format("DD.MM.YYYY");
+                    delay.abfahrtFormated = abfahrtMoment.format("HH:mm")
+                }
+            );
+
+            console.log(delays[0].verspaetung);
             this.allDelays = delays
             this.filteredDelays = delays
             this.shownDelays = delays.slice(0, this.delaysPerPage)
@@ -50,10 +68,11 @@ export class ListComponent implements OnInit {
 
     onSearchChanged() {
         console.log(this.searchString)
+        let lowerSearchString = this.searchString.toLowerCase()
         this.filteredDelays = []
         for(let delay of this.allDelays) {
 
-            if((delay.von.indexOf(this.searchString) != -1) || (delay.nach.indexOf(this.searchString) != -1) || (delay.datum.indexOf(this.searchString) != -1)) {
+            if((delay.von.toLowerCase().indexOf(lowerSearchString) != -1) || (delay.nach.toLowerCase().indexOf(lowerSearchString) != -1) || (delay.datumFormated.toLowerCase().indexOf(lowerSearchString) != -1)) {
                 this.filteredDelays.push(delay)
             }
         }
@@ -74,7 +93,12 @@ export class ListComponent implements OnInit {
         }
     }
 
-    onCheckboxChanged(event : Event, delayId : number) {
-        
-    }
+    onCheckboxChanged(event, delayId : number) {
+        if(event.srcElement.checked) {
+            this.modelService.addSelectedDelay(this.allDelays.find((value) => +value.id == delayId))
+        }
+        else {
+            this.modelService.removeSelectedDelayById(delayId)
+        }
+     }
 }

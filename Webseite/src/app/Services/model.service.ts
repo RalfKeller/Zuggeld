@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class ModelService {
 
-    private selectedDelays : Delay[]
+    private selectedDelays : Delay[] = []
 
     constructor() { }
 
@@ -19,6 +19,14 @@ export class ModelService {
                 i--
             }
         }
+    }
+
+    isSelected(delayId : number) : boolean {
+        return this.selectedDelays.find((value) => +value.id == delayId)? true : false
+    }
+
+    removeSelectedDelayById(delayId : number) {
+        this.selectedDelays.splice(this.selectedDelays.findIndex((value) => +value.id == delayId), 1) 
     }
 
     setSelectedDelays(selectedDelays : Delay[]) {

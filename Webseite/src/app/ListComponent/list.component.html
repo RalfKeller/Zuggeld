@@ -18,22 +18,24 @@
                 <thead>
                     <tr>
                         <th>Von</th>
-                        <th>Von</th>
+                        <th>Nach</th>
+                        <th>Typ</th>
                         <th>Datum</th>
-                        <th>Uhrzeit</th>
+                        <th>Abfahrt</th>
                         <th>Verspätung</th>
-                        <th style="text-align: center">Ausgewählt</th>
+                        <th style="text-align: center">Auswahl</th>
                     </tr>
                 </thead>
                 <tbody *ngIf="shownDelays">
                     <tr *ngFor="let delay of shownDelays">
                         <td>{{delay.von}}</td>
                         <td>{{delay.nach}}</td>
-                        <td>{{delay.datum}}</td>
-                        <td>{{delay.uhrzeit}}</td>
+                        <td>{{delay.zug_typ}}</td>
+                        <td>{{delay.datumFormated}}</td>
+                        <td>{{delay.abfahrtFormated}}</td>
                         <td>{{delay.verspaetung}}</td>
                         <td style="text-align:center">
-                            <input type="checkbox" class="filled-in" [id]="delay.id" checked="checked" (change)="onCheckboxChanged($event, delay.id)" />
+                            <input type="checkbox" class="filled-in" [id]="delay.id" [checked]="modelService.isSelected(+delay.id)" (change)="onCheckboxChanged($event, delay.id)" />
                             <label [for]=" delay.id "></label>
                         </td>
                     </tr>
