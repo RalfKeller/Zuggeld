@@ -6,3 +6,26 @@ border: 1px solid #e8e8e8;
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.27), 0 0 40px rgba(0, 0, 0, 0.08) inset;
     border-radius: 4px;
 }
+
+nav .nav-wrapper{
+    width:90%;
+    max-width: none;
+}
+
+@media only screen and (min-width: 601px){
+ nav, nav .nav-wrapper i, nav a.button-collapse, nav a.button-collapse i{
+        height: 90px;
+    }
+}
+
+.brand-logo{
+    height:100%;
+}
+
+.brand-logo img{
+    height:100%;
+}
+
+.heart{
+    font-size: 15px;
+}
